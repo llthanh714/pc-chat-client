@@ -41,6 +41,16 @@ const MessageContainer = ({ messages, curentUser }: any) => {
                   " mb-4"
                 }
               >
+                {m.user === curentUser ? (
+                  ""
+                ) : (
+                  <img
+                    className="mx-3"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                    alt="avatar 1"
+                    style={{ width: "45px", height: "100%" }}
+                  />
+                )}
                 <MDBCard
                   style={{
                     borderRadius: "15px",
@@ -60,12 +70,16 @@ const MessageContainer = ({ messages, curentUser }: any) => {
                     <p className="mb-0">{m.message}</p>
                   </MDBCardBody>
                 </MDBCard>
-                <img
-                  className="mx-3"
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                  alt="avatar 1"
-                  style={{ width: "45px", height: "100%" }}
-                />
+                {m.user === curentUser ? (
+                  <img
+                    className="mx-3"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3-bg.webp"
+                    alt="avatar 1"
+                    style={{ width: "45px", height: "100%" }}
+                  />
+                ) : (
+                  ""
+                )}
               </li>
             ))}
           </div>

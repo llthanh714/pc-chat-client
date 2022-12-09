@@ -27,7 +27,7 @@ const SendMessageForm = ({ sendMessage }: any) => {
           disabled={!message}
           style={{ paddingTop: ".55rem" }}
         >
-          Button
+          Send
         </MDBBtn>
       </MDBInputGroup>
     </form>
