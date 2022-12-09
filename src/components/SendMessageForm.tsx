@@ -1,23 +1,36 @@
-import { Form, Button, FormControl, InputGroup } from 'react-bootstrap';
-import { useState } from 'react';
+import { useState } from "react";
+import { MDBBtn, MDBInputGroup } from "mdb-react-ui-kit";
 
 const SendMessageForm = ({ sendMessage }: any) => {
-    const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
-    return <Form
-        onSubmit={e => {
-            e.preventDefault();
-            sendMessage(message);
-            setMessage('');
-        }}>
-        <InputGroup>
-            <FormControl type="user" placeholder="message..."
-                onChange={e => setMessage(e.target.value)} value={message} />
-            <InputGroup>
-                <Button variant="primary" type="submit" disabled={!message}>Send</Button>
-            </InputGroup>
-        </InputGroup>
-    </Form>
-}
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        sendMessage(message);
+        setMessage("");
+      }}
+    >
+      <MDBInputGroup className="mb-0">
+        <input
+          className="form-control"
+          placeholder="Message..."
+          type="text"
+          onChange={(e) => setMessage(e.target.value)}
+          value={message}
+        />
+        <MDBBtn
+          color="warning"
+          type="submit"
+          disabled={!message}
+          style={{ paddingTop: ".55rem" }}
+        >
+          Button
+        </MDBBtn>
+      </MDBInputGroup>
+    </form>
+  );
+};
 
 export default SendMessageForm;
