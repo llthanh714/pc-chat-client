@@ -54,7 +54,10 @@ const MessageContainer = ({ messages, curentUser }: any) => {
                 <MDBCard
                   style={{
                     borderRadius: "15px",
-                    backgroundColor: "rgba(57, 192, 237,.2)",
+                    backgroundColor:
+                      m.user === curentUser
+                        ? "#fbfbfb"
+                        : "rgba(57, 192, 237,.2)",
                   }}
                 >
                   <MDBCardHeader className="d-flex justify-content-between p-2">
