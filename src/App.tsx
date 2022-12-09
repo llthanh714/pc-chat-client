@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
-import Lobby from './components/Login';
-import Chat from './components/Chat';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from "react";
+import { HubConnectionBuilder, LogLevel } from "@microsoft/signalr";
+import Lobby from "./components/Login";
+import Chat from "./components/Chat";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const App = () => {
   const [connection, setConnection] = useState<any>();
@@ -18,14 +18,14 @@ const App = () => {
         .build();
 
       connection.on("ReceiveMessage", (user, message) => {
-        setMessages(messages => [...messages, { user, message }]);
+        setMessages((messages) => [...messages, { user, message }]);
       });
 
       connection.on("UsersInRoom", (users) => {
         setUsers(users);
       });
 
-      connection.onclose(e => {
+      connection.onclose((e) => {
         setConnection(null);
         setMessages([]);
         setUsers([]);
@@ -37,7 +37,7 @@ const App = () => {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   const sendMessage = async (message: string) => {
     try {
@@ -45,7 +45,7 @@ const App = () => {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   const closeConnection = async () => {
     try {
@@ -53,13 +53,22 @@ const App = () => {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
-  return <div>
-    {!connection
-      ? <Lobby joinRoom={joinRoom} />
-      : <Chat sendMessage={sendMessage} messages={messages} users={users} closeConnection={closeConnection} />}
-  </div>
-}
+  return (
+    <div>
+      {!connection ? (
+        <Lobby joinRoom={joinRoom} />
+      ) : (
+        <Chat
+          sendMessage={sendMessage}
+          messages={messages}
+          users={users}
+          closeConnection={closeConnection}
+        />
+      )}
+    </div>
+  );
+};
 
 export default App;

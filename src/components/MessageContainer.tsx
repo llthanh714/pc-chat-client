@@ -22,6 +22,8 @@ const MessageContainer = ({ messages }: any) => {
     }
   }, [messages]);
 
+  console.log(messages);
+
   return (
     <div ref={messageRef}>
       <MDBCard>
@@ -44,13 +46,15 @@ const MessageContainer = ({ messages }: any) => {
                     }}
                   >
                     <MDBCardHeader className="d-flex justify-content-between p-2">
-                      <p className="fw-bold small mb-0">{m.user}&nbsp;&nbsp;&nbsp;</p>
+                      <p className="fw-bold small mb-0">
+                        {m.user}&nbsp;&nbsp;&nbsp;
+                      </p>
                       <p className="text-muted small mb-0">
                         <MDBIcon far icon="clock" />{" "}
                         {new Date().toLocaleString() + ""}
                       </p>
                     </MDBCardHeader>
-                    <MDBCardBody>
+                    <MDBCardBody className="p-2">
                       <p className="mb-0">{m.message}</p>
                     </MDBCardBody>
                   </MDBCard>

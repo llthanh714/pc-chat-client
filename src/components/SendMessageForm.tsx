@@ -5,7 +5,8 @@ const SendMessageForm = ({ sendMessage }: any) => {
   const [message, setMessage] = useState("");
 
   return (
-    <form className="pt-2"
+    <form
+      className="pt-2"
       onSubmit={(e) => {
         e.preventDefault();
         sendMessage(message);
