@@ -1,26 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useState } from 'react';
+import { HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
+import Lobby from './components/Login';
+import Chat from './components/Chat';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+  const [connection, setConnection] = useState<any>();
+  const [messages, setMessages] = useState<any[]>([]);
+  const [users, setUsers] = useState([]);
+
+  const joinRoom = async (user: string, room: string) => {
+    try {
+      const connection = new HubConnectionBuilder()
+        .withUrl("https://localhost:7087/chat")
+        .configureLogging(LogLevel.Information)
+        .build();
+
+      connection.on("ReceiveMessage", (user, message) => {
+        setMessages(messages => [...messages, { user, message }]);
+      });
+
+      connection.on("UsersInRoom", (users) => {
+        setUsers(users);
+      });
+
+      connection.onclose(e => {
+        setConnection(null);
+        setMessages([]);
+        setUsers([]);
+      });
+
+      await connection.start();
+      await connection.invoke("JoinRoom", { user, room });
+      setConnection(connection);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const sendMessage = async (message: string) => {
+    try {
+      await connection.invoke("SendMessage", message);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const closeConnection = async () => {
+    try {
+      await connection.stop();
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  return <div className='app'>
+    <h2>MyChat</h2>
+    <hr className='line' />
+    {!connection
+      ? <Lobby joinRoom={joinRoom} />
+      : <Chat sendMessage={sendMessage} messages={messages} users={users} closeConnection={closeConnection} />}
+  </div>
 }
 
 export default App;
