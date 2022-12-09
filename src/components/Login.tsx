@@ -2,38 +2,42 @@ import {
   MDBBtn,
   MDBCard,
   MDBCardBody,
+  MDBCardImage,
   MDBCol,
   MDBContainer,
   MDBInput,
   MDBRow,
 } from "mdb-react-ui-kit";
 import { useState } from "react";
-import { Form } from "react-bootstrap";
 
 const Login = ({ joinRoom }: any) => {
   const [user, setUser] = useState<string>();
   const [room, setRoom] = useState<string>();
 
   return (
-    <MDBContainer fluid>
-      <Form className="lobby"
+    <MDBContainer fluid className="mt-5">
+      <form
+        className="lobby"
         onSubmit={(e) => {
           e.preventDefault();
           joinRoom(user, room);
         }}
       >
-        <MDBRow className="d-flex justify-content-center align-items-center h-100">
-          <MDBCol col="12">
-            <MDBCard
-              className="bg-white my-5 mx-auto"
-              style={{ borderRadius: "1rem", maxWidth: "500px" }}
-            >
-              <MDBCardBody className="p-5 w-100 d-flex flex-column">
-                <h2 className="fw-bold mb-2 text-center">SignalR Chat Hub</h2>
-                <p className="text-white-50 mb-3">
-                  Please enter your info!
-                </p>
+        <MDBCard>
+          <MDBRow className="g-0 d-flex align-items-center">
+            <MDBCol md="4">
+              <MDBCardImage
+                src="https://e0.pxfuel.com/wallpapers/247/650/desktop-wallpaper-best-cool-tumblr-iphone-for-whatsapp-chat-ideas.jpg"
+                alt="phone"
+                className="rounded-t-5 rounded-tr-lg-0"
+                fluid
+              />
+            </MDBCol>
 
+            <MDBCol md="8">
+              <MDBCardBody>
+                <h2 className="fw-bold mb-2 text-center">SignalR Chat Hub</h2>
+                <p className="mb-3 text-center">llthanh714</p>
                 <MDBInput
                   wrapperClass="mb-4 w-100"
                   label="Enter your name..."
@@ -51,12 +55,18 @@ const Login = ({ joinRoom }: any) => {
                   onChange={(e) => setRoom(e.target.value)}
                 />
 
-                <MDBBtn size="lg" disabled={!user || !room}>Join</MDBBtn>
+                <MDBBtn
+                  size="lg"
+                  className="mb-4 w-100"
+                  disabled={!user || !room}
+                >
+                  Join
+                </MDBBtn>
               </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </Form>
+            </MDBCol>
+          </MDBRow>
+        </MDBCard>
+      </form>
     </MDBContainer>
   );
 };
