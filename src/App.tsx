@@ -55,7 +55,7 @@ const App = () => {
     }
   }
 
-  return <div className='app'>
+  return <div>
     {!connection
       ? <Lobby joinRoom={joinRoom} />
       : <Chat sendMessage={sendMessage} messages={messages} users={users} closeConnection={closeConnection} />}

@@ -5,7 +5,7 @@ const SendMessageForm = ({ sendMessage }: any) => {
   const [message, setMessage] = useState("");
 
   return (
-    <form
+    <form className="pt-2"
       onSubmit={(e) => {
         e.preventDefault();
         sendMessage(message);
@@ -21,7 +21,7 @@ const SendMessageForm = ({ sendMessage }: any) => {
           value={message}
         />
         <MDBBtn
-          color="warning"
+          color="primary"
           type="submit"
           disabled={!message}
           style={{ paddingTop: ".55rem" }}

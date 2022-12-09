@@ -30,7 +30,9 @@ const ConnectedUsers = ({ users }: any) => {
                     </div>
                   </div>
                   <div className="pt-1">
-                    <p className="small text-muted mb-1">Just now</p>
+                    <p className="small text-muted mb-1">
+                      {new Date().toLocaleString() + ""}
+                    </p>
                   </div>
                 </a>
               </li>
