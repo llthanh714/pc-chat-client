@@ -8,7 +8,7 @@ import {
 import { useEffect, useRef } from "react";
 import "../App.css";
 
-const MessageContainer = ({ messages }: any) => {
+const MessageContainer = ({ messages, curentUser }: any) => {
   const messageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -35,7 +35,11 @@ const MessageContainer = ({ messages }: any) => {
             {messages.map((m: any, index: any) => (
               <li
                 key={index}
-                className="d-flex flex-row justify-content-end mb-4"
+                className={
+                  "d-flex flex-row justify-content-" +
+                  (m.user === curentUser ? "end" : "start") +
+                  " mb-4"
+                }
               >
                 <MDBCard
                   style={{
