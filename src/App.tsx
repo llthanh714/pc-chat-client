@@ -9,11 +9,12 @@ const App = () => {
   const [connection, setConnection] = useState<any>();
   const [messages, setMessages] = useState<any[]>([]);
   const [users, setUsers] = useState([]);
+  const [currentUsers, setCurrentUsers] = useState<string>();
 
   const joinRoom = async (user: string, room: string) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl("https://localhost:7087/chat")
+        .withUrl("http://localhost:5005/chat")
         .configureLogging(LogLevel.Information)
         .build();
 
@@ -34,6 +35,7 @@ const App = () => {
       await connection.start();
       await connection.invoke("JoinRoom", { user, room });
       setConnection(connection);
+      setCurrentUsers(user);
     } catch (e) {
       console.log(e);
     }
@@ -65,6 +67,7 @@ const App = () => {
           messages={messages}
           users={users}
           closeConnection={closeConnection}
+          curentUser = {currentUsers}
         />
       )}
     </div>
