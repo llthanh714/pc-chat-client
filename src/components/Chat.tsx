@@ -6,7 +6,10 @@ import { MDBBtn } from "mdb-react-ui-kit";
 const Chat = ({ sendMessage, messages, users, closeConnection }: any) => (
   <div>
     <div>
-      <MDBBtn className="btn-danger" onClick={() => closeConnection()}>
+      <MDBBtn
+        className="btn-danger align-self-center"
+        onClick={() => closeConnection()}
+      >
         Leave Room
       </MDBBtn>
     </div>
