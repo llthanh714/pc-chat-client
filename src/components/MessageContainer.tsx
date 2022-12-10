@@ -1,12 +1,8 @@
-import {
-  MDBCard,
-  MDBCardBody,
-  MDBCardHeader,
-  MDBIcon,
-  MDBTypography,
-} from "mdb-react-ui-kit";
+import { MDBCard, MDBCardBody, MDBTypography } from "mdb-react-ui-kit";
 import { useEffect, useRef } from "react";
 import "../App.css";
+import Send from "./MessageSend";
+import Recieve from "./MessageRecieve";
 
 const MessageContainer = ({ messages, curentUser }: any) => {
   const messageRef = useRef<HTMLDivElement | null>(null);
@@ -24,7 +20,7 @@ const MessageContainer = ({ messages, curentUser }: any) => {
 
   return (
     <MDBCard>
-      <MDBCardBody>
+      <MDBCardBody className="p-3">
         <MDBTypography listUnStyled>
           <div
             ref={messageRef}
@@ -32,59 +28,13 @@ const MessageContainer = ({ messages, curentUser }: any) => {
             data-bs-offset="0"
             className="scrollspy-example"
           >
-            {messages.map((m: any, index: any) => (
-              <li
-                key={index}
-                className={
-                  "d-flex flex-row justify-content-" +
-                  (m.user === curentUser ? "end" : "start") +
-                  " mb-4"
-                }
-              >
-                {m.user === curentUser ? (
-                  ""
-                ) : (
-                  <img
-                    className="mx-3"
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
-                    alt="avatar 1"
-                    style={{ width: "45px", height: "100%" }}
-                  />
-                )}
-                <MDBCard
-                  style={{
-                    borderRadius: "15px",
-                    backgroundColor:
-                      m.user === curentUser
-                        ? "#fbfbfb"
-                        : "rgba(57, 192, 237,.2)",
-                  }}
-                >
-                  <MDBCardHeader className="d-flex justify-content-between p-2">
-                    <p className="fw-bold small mb-0">
-                      {m.user}&nbsp;&nbsp;&nbsp;
-                    </p>
-                    <p className="text-muted small mb-0">
-                      <MDBIcon far icon="clock" />{" "}
-                      {new Date().toLocaleString() + ""}
-                    </p>
-                  </MDBCardHeader>
-                  <MDBCardBody className="p-2">
-                    <p className="mb-0">{m.message}</p>
-                  </MDBCardBody>
-                </MDBCard>
-                {m.user === curentUser ? (
-                  <img
-                    className="mx-3"
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3-bg.webp"
-                    alt="avatar 1"
-                    style={{ width: "45px", height: "100%" }}
-                  />
-                ) : (
-                  ""
-                )}
-              </li>
-            ))}
+            {messages.map((m: any, index: any) =>
+              m.user === curentUser ? (
+                <Send m={m} index={index} />
+              ) : (
+                <Recieve m={m} index={index} />
+              )
+            )}
           </div>
         </MDBTypography>
       </MDBCardBody>
