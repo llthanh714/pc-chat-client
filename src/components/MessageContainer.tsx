@@ -20,7 +20,7 @@ const MessageContainer = ({ messages, curentUser }: any) => {
 
   return (
     <MDBCard>
-      <MDBCardBody className="p-3">
+      <MDBCardBody className="p-2">
         <MDBTypography listUnStyled>
           <div
             ref={messageRef}

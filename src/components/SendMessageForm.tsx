@@ -14,7 +14,7 @@ const SendMessageForm = ({ sendMessage }: any) => {
       }}
     >
       <MDBCard>
-        <MDBCardBody className="p-0">
+        <MDBCardBody className="p-1">
           <MDBInputGroup>
             <input
               className="form-control"

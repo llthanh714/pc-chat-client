@@ -11,8 +11,8 @@ const MessageSend = ({ m, index }: any) => {
           }}
         >
           <MDBCardHeader className="d-flex justify-content-between p-2">
-            <p className="fw-bold small mb-0">{m.user}&nbsp;&nbsp;&nbsp;</p>
-            <p className="text-muted small mb-0">
+            <p className="fw-bold small fst-italic mb-0">{m.user}&nbsp;&nbsp;&nbsp;</p>
+            <p className="text-muted small fst-italic mb-0">
               <MDBIcon far icon="clock" /> {new Date().toLocaleString() + ""}
             </p>
           </MDBCardHeader>
@@ -21,7 +21,7 @@ const MessageSend = ({ m, index }: any) => {
           </MDBCardBody>
         </MDBCard>
         <img
-          className="ms-3"
+          className="ms-2"
           src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3-bg.webp"
           alt="avatar"
           style={{ width: "45px", height: "100%" }}
