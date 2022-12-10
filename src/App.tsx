@@ -14,7 +14,7 @@ const App = () => {
   const joinRoom = async (user: string, room: string) => {
     try {
       const connection = new HubConnectionBuilder()
-        .withUrl("http://localhost:5005/chat")
+        .withUrl("https://portal.phuongchau.com/chathub/chat")
         .configureLogging(LogLevel.Information)
         .build();
 
