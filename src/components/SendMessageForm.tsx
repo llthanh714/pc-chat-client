@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MDBBtn, MDBInputGroup } from "mdb-react-ui-kit";
+import { MDBBtn, MDBCard, MDBCardBody, MDBInputGroup } from "mdb-react-ui-kit";
 
 const SendMessageForm = ({ sendMessage }: any) => {
   const [message, setMessage] = useState("");
@@ -13,23 +13,28 @@ const SendMessageForm = ({ sendMessage }: any) => {
         setMessage("");
       }}
     >
-      <MDBInputGroup className="mb-0">
-        <input
-          className="form-control"
-          placeholder="Message..."
-          type="text"
-          onChange={(e) => setMessage(e.target.value)}
-          value={message}
-        />
-        <MDBBtn
-          color="primary"
-          type="submit"
-          disabled={!message}
-          style={{ paddingTop: ".55rem" }}
-        >
-          Send
-        </MDBBtn>
-      </MDBInputGroup>
+      <MDBCard>
+        <MDBCardBody className="p-0">
+          <MDBInputGroup>
+            <input
+              className="form-control"
+              placeholder="Message..."
+              type="text"
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
+              style={{ border: "none" }}
+            />
+            <MDBBtn
+              color="success"
+              type="submit"
+              disabled={!message}
+              style={{ paddingTop: ".55rem" }}
+            >
+              Send
+            </MDBBtn>
+          </MDBInputGroup>
+        </MDBCardBody>
+      </MDBCard>
     </form>
   );
 };
