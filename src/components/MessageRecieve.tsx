@@ -1,9 +1,10 @@
 import { MDBCard, MDBCardBody, MDBCardHeader, MDBIcon } from "mdb-react-ui-kit";
+import IMessage from "../interfaces/IMessage";
 
-const MessageRecieve = ({ m, index }: any) => {
+const MessageRecieve = ({ user, message }: IMessage) => {
   return (
     <>
-      <li key={index} className={"d-flex flex-row justify-content-start mb-4"}>
+      <li className={"d-flex flex-row justify-content-start mb-4"}>
         <img
           className="me-2"
           src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
@@ -17,13 +18,15 @@ const MessageRecieve = ({ m, index }: any) => {
           }}
         >
           <MDBCardHeader className="d-flex justify-content-between p-2">
-            <p className="fw-bold small fst-italic mb-0">{m.user}&nbsp;&nbsp;&nbsp;</p>
+            <p className="fw-bold small fst-italic mb-0">
+              {user}&nbsp;&nbsp;&nbsp;
+            </p>
             <p className="text-muted small fst-italic mb-0">
               <MDBIcon far icon="clock" /> {new Date().toLocaleString() + ""}
             </p>
           </MDBCardHeader>
           <MDBCardBody className="p-2">
-            <p className="mb-0">{m.message}</p>
+            <p className="mb-0">{message}</p>
           </MDBCardBody>
         </MDBCard>
       </li>

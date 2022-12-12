@@ -3,8 +3,9 @@ import { useEffect, useRef } from "react";
 import "../App.css";
 import Send from "./MessageSend";
 import Recieve from "./MessageRecieve";
+import IMessageContainer from "../interfaces/IMessageContainer";
 
-const MessageContainer = ({ messages, curentUser }: any) => {
+const MessageContainer = ({ messages, curentUser }: IMessageContainer) => {
   const messageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -30,9 +31,9 @@ const MessageContainer = ({ messages, curentUser }: any) => {
           >
             {messages.map((m: any, index: any) =>
               m.user === curentUser ? (
-                <Send m={m} index={index} />
+                <Send key={index} user={m.user} message={m.message} />
               ) : (
-                <Recieve m={m} index={index} />
+                <Recieve key={index} user={m.user} message={m.message} />
               )
             )}
           </div>
